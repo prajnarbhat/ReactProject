@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AccountContext } from "./AccountContext";
 
 const RegisterAccount = () => {
@@ -11,6 +12,11 @@ const RegisterAccount = () => {
 
     const {data, setData} = useContext(AccountContext);
 
+    const checkBoxData = [ "Yes", "No"]
+    const [selected, setSelected] = useState(null);
+    // initially nothing will be selected
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,18 +30,19 @@ const RegisterAccount = () => {
             companyName: companyName
         }
 
-        let updatedData = [...data, registerData]
-
-        console.log(updatedData)
+        const updatedData = [...data, registerData]
 
         setData(updatedData)
 
+        navigate("/details");
+
     }
+
     return (
         <>
 
         <div className="flex items-center justify-center align-middle min-h-screen bg-gray-100 dark-bg-gray-900">
-            <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"> 
+            <div className="w-full max-w-sm m-3 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"> 
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="flex justify-between items-center">
                         <h5 className="text-xl font-medium text-gray-900 dark:text-white"> Create your popX account </h5>
@@ -67,18 +74,25 @@ const RegisterAccount = () => {
                                 Are you an Agency?
                             </span>
                         </div>
-                        <div className="flex">
-                            <label class="container"> Yes
-                                <input type="radio" checked="checked" name="radio"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container"> No 
-                                <input type="radio" name="radio"/>
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
+                        <div>
+                        <ul className="flex space-x-2">
+                            {checkBoxData.map((name, index) => (
+                            <div key={index} className="space-x-1">
+                                <input id={`custom-checkbox-${index}`}
+                                type="checkbox" name={name}
+                                checked={selected === name}
+                                onChange={() => setSelected(selected === name ? null : name)}
+                                />
+                                <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                            </div>
+                            ))}
+                        </ul>
                     </div>
-                    <button className="w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="Submit"> Create Account </button>
+                    </div>
+                    <button className="w-full mt-4 text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Create Account
+                    </button>
+                    
                 </form>
             </div>
         </div>
