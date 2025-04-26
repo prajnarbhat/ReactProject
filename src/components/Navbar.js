@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../images/images1.jpg";
 
 const Navbar = () => {
@@ -11,7 +12,7 @@ const Navbar = () => {
           <h3 className="text-xl font-bold">PopX Account</h3>
         </div>
 
-        {/* <ul className="flex space-x-6">
+        <ul className="flex space-x-6">
           <li>
             <Link to="/"
               className="hover:text-blue-300 transition-colors duration-200 text-base font-medium">
@@ -30,7 +31,7 @@ const Navbar = () => {
               Signin
             </Link>
           </li>
-        </ul> */}
+        </ul>
       </div>
     </nav>
     </>

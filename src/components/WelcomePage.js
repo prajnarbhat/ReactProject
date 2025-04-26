@@ -1,16 +1,7 @@
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { AccountContext } from "./AccountContext";
 
 const WelcomePage = () => {
     
-    const [ userName, setName ] = useState("");
-    const [ phoneNumber, setPhoneNumber ] = useState("");
-    const [ emailAddress, setEmailAddress ] = useState("");
-    const [ password, setPassword ] = useState("");
-    const [ companyName, setCompanyName ] = useState("");
-
-    const {data, setData} = useContext(AccountContext);
 
     return (
         <>
