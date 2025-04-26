@@ -1,15 +1,10 @@
-import { useContext, useState } from "react";
-import { AccountContext } from "./AccountContext";
+import { useState } from "react";
 
 const SignInPage = () => {
     
     const [ userName, setName ] = useState("");
     const [ phoneNumber, setPhoneNumber ] = useState("");
     const [ emailAddress, setEmailAddress ] = useState("");
-    const [ password, setPassword ] = useState("");
-    const [ companyName, setCompanyName ] = useState("");
-
-    const {data, setData} = useContext(AccountContext);
 
     return (
         <>
